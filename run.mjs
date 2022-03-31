@@ -1,4 +1,4 @@
-#!/usr/bin / env node
+#!/usr/bin/env node
 
 import { $, argv } from 'zx';
 
@@ -17,11 +17,7 @@ process.env.FLASK_APP = 'app:app';
 if (argv.prod) {
     // builds the React part first and then runs the Flask app in production mode
     await $`npx parcel build`;
-    await $`flask run`;
-} else if (argv.flask) {
-    await $`flask run -h $IP -p $PORT`;
-}
-else {
+} else {
     process.env.FLASK_ENV = 'development'; // to enable debug features in Flask
     // this is what runs both processes in parallel, Promise.all executes all promises in the array in parallel
     // zx returns the result of $ commands as promises
