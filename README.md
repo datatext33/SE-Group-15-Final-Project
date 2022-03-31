@@ -16,7 +16,7 @@ To use the TMBD API, create a file called .env, and add the line `export TMDB_KE
 
 Application contains Procfile and requirements.txt files, which enable it to be deployed using the Heroku command line interface.  The commands `heroku create` and `git push heroku your_branch` can be used.  A Postgresql database can be setup using the `heroku addons:create heroku-postgresql:hobby-dev`.  Using the `heroku config` command the DATABASE_URL variable can be added to the .env file.  Additionally a SECRET_KEY environment variable must be defined to enable the flask-login package to be used.
 
-To build the application, `npx run build`
-To run the application with hot reload, run `npx run start`
+To build the application, `npm run build`
+To run the application with hot reload, run `npm run start`
 
 *Deployed Heroku URL*: 
