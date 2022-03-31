@@ -19,7 +19,7 @@ if (argv.prod) {
     await $`npx parcel build`;
     await $`flask run`;
 } else if (argv.flask) {
-    await $`flask run`;
+    await $`flask run -h $IP -p $PORT`;
 }
 else {
     process.env.FLASK_ENV = 'development'; // to enable debug features in Flask
