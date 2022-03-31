@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+    <ul>
+        <li style="float: left;">
+            Logged in as <b>{{current_user.username}}</b>
+        </li>
+        <li style="padding-right: 16%;">
+            <a href="/">View your reviews</a>
+        </li>
+        <li>
+            <a href="/movie">Fetch a random movie</a>
+        </li>
+        <li style="float: right;">
+            <a href="/logout">Sign out</a>
+        </li>
+    </ul>
+
+
+    <div>
+        <h1>{{movie["title"]}}</h1>
+        <p><i>{{movie["tagline"]}}</i></p>
+        <img src="{{movie['poster_path']}}" />
+        <p>
+            {% for genre in movie["genres"] %}
+            • {{genre}}
+            {% endfor %}
+        </p>
+        <p>
+            <a href="{{movie['wiki_url']}}">See Wikipedia Article</a>
+        </p>
+    </div>
+    <div id="comment_form">
+        <h2>Post a Comment</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="flashes">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/comment">
+            Movie ID <input type="text" name="movie_id" value="{{movie['id']}}" readonly />
+            Rating (out of 10) <input type="text" name="rating" />
+            <br /><br />
+            <textarea rows="3" cols="30" name="comment">Leave a comment</textarea>
+            <br /><br />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    <div>
+        <h2>All comments about {{movie['title']}}</h2>
+
+        {% if comments.count()==0 %}
+        <p>No comments have been posted yet</p>
+        {% else %}
+        {% for comment in comments %}
+        <div class="comment">
+            <b>User:</b> {{users.query.filter_by(id=comment.user_id).first().username}}
+            <b>Rating:</b> {{comment.rating}}
+            <br /><br />{{comment.comment}}
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+
+</html>

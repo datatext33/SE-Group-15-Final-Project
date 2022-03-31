@@ -1,0 +1,32 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "## Technologies, Frameworks, Libraries, and APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node run.mjs",
+    "build": "node run.mjs --prod",
+    "flask": "node run.mjs --flask"
+  },
+  "source": "static/react/index.js",
+  "targets": {
+    "default": {
+      "distDir": "./static/js"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.4.0"
+  },
+  "dependencies": {
+    "@parcel/transformer-react-refresh-wrap": "^2.4.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.2.2",
+    "zx": "^6.0.7"
+  }
+}
