@@ -9,6 +9,7 @@ import flask_login
 from dotenv import find_dotenv, load_dotenv
 from models import db, AppUser, Review
 from api import get_movie
+from spoonacular import search_recipe, search_ingredients
 
 # modify database url environment variable so it is usable by SQLAlchemy
 load_dotenv(find_dotenv())
@@ -50,6 +51,21 @@ def index(path):
     if not flask_login.current_user.is_authenticated:
         return flask.redirect(flask.url_for("login"))
     return flask.render_template("index.html")
+
+
+@app.route("/search", methods=["POST"])
+@flask_login.login_required
+def search():
+    """
+    search the spoonacular api
+    """
+    data = flask.request.json
+    number = data["length"]
+    if data["type"] == "Recipes":
+        results = search_recipe(data["query"], number)
+    else:
+        results = search_ingredients(data["query"], number)
+    return flask.jsonify(results)
 
 
 """
