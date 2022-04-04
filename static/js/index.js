@@ -997,52 +997,42 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
 var _reactRouterDom = require("react-router-dom");
-var _app = require("./App");
-var _appDefault = parcelHelpers.interopDefault(_app);
-var _testPage = require("./TestPage");
-var _testPageDefault = parcelHelpers.interopDefault(_testPage);
-var _testPage1 = require("./TestPage1");
-var _testPage1Default = parcelHelpers.interopDefault(_testPage1);
-const container = document.getElementById("app");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _nav = require("./Nav");
+var _navDefault = parcelHelpers.interopDefault(_nav);
+var _searchPage = require("./SearchPage");
+var _searchPageDefault = parcelHelpers.interopDefault(_searchPage);
+const container = document.getElementById('app');
 const root = _client.createRoot(container);
-//Nested routes are displayed with outlet tag
+// Nested routes are displayed with outlet tag
 root.render(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
     children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Routes, {
-        children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                path: "/",
-                element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_appDefault.default, {}, void 0, false, void 0, void 0),
-                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                    path: "testpage1",
-                    element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_testPage1Default.default, {}, void 0, false, void 0, void 0)
-                }, void 0, false, {
-                    fileName: "static/react/index.js",
-                    lineNumber: 14,
-                    columnNumber: 17
-                }, undefined)
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+            path: "/",
+            element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navDefault.default, {}, void 0, false, void 0, void 0),
+            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                path: "/search",
+                element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_searchPageDefault.default, {}, void 0, false, void 0, void 0)
             }, void 0, false, {
                 fileName: "static/react/index.js",
-                lineNumber: 13,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                path: "testpage",
-                element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_testPageDefault.default, {}, void 0, false, void 0, void 0)
-            }, void 0, false, {
-                fileName: "static/react/index.js",
-                lineNumber: 16,
-                columnNumber: 13
+                lineNumber: 14,
+                columnNumber: 9
             }, undefined)
-        ]
-    }, void 0, true, {
+        }, void 0, false, {
+            fileName: "static/react/index.js",
+            lineNumber: 13,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
         fileName: "static/react/index.js",
         lineNumber: 12,
-        columnNumber: 9
+        columnNumber: 5
     }, undefined)
 }, void 0, false, {
     fileName: "static/react/index.js",
     lineNumber: 11,
-    columnNumber: 5
+    columnNumber: 3
 }, undefined));
 
   $parcel$ReactRefreshHelpers$383e.postlude(module);
@@ -1050,7 +1040,7 @@ root.render(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react-router-dom":"fdOAw","./App":"axUqr","./TestPage":"4ZYvD","./TestPage1":"3JPlB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Nav":"gAWwZ","./SearchPage":"dgSDT","react":"21dqq"}],"iTorj":[function(require,module,exports) {
 'use strict';
 module.exports = require('./cjs/react-jsx-dev-runtime.development.js');
 
@@ -26841,11 +26831,131 @@ const normalizeSearch = (search)=>!search || search === "?" ? "" : search.starts
 const normalizeHash = (hash)=>!hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash
 ; ///////////////////////////////////////////////////////////////////////////////
 
-},{"react":"21dqq","history":"iE5Zp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"axUqr":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$4aca = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react":"21dqq","history":"iE5Zp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
+"use strict";
+var Refresh = require('react-refresh/runtime');
+function debounce(func, delay) {
+    var args1;
+    var timeout = undefined;
+    return function(args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = undefined;
+            func.call(null, args);
+        }, delay);
+    };
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module.id + ' ' + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module) {
+    if (isReactRefreshBoundary(module.exports)) {
+        registerExportsForReactRefresh(module);
+        if (module.hot) {
+            module.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module.exports;
+            });
+            module.hot.accept(function(getParents) {
+                var prevExports = module.hot.data.prevExports;
+                var nextExports = module.exports; // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module) {
+    var exports = module.exports, id = module.id;
+    Refresh.register(exports, id + ' %exports%');
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        Refresh.register(exportValue, id + ' %exports% ' + key);
+    }
+}
+
+},{"react-refresh/runtime":"786KC"}],"gAWwZ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$aff9 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$4aca.prelude(module);
+$parcel$ReactRefreshHelpers$aff9.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -26853,270 +26963,180 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactRouterDom = require("react-router-dom");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _s = $RefreshSig$();
-// Comment component receives three functions as props,
-// these will be used to modify the comments state variable
-function Comment({ movieID , rating , comment , onChangeRating , onChangeComment , onClickDelete ,  }) {
+function Nav() {
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
         children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("span", {
-                className: "id-label",
-                children: [
-                    "Movie ID:",
-                    ` ${movieID}`
-                ]
-            }, void 0, true, {
-                fileName: "static/react/App.js",
-                lineNumber: 13,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
-                type: "number",
-                value: rating,
-                className: "number-input",
-                onChange: onChangeRating
-            }, void 0, false, {
-                fileName: "static/react/App.js",
-                lineNumber: 17,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
-                type: "text",
-                value: comment,
-                onChange: onChangeComment
-            }, void 0, false, {
-                fileName: "static/react/App.js",
-                lineNumber: 18,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
-                type: "button",
-                onClick: onClickDelete,
-                children: "Delete"
-            }, void 0, false, {
-                fileName: "static/react/App.js",
-                lineNumber: 19,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "static/react/App.js",
-        lineNumber: 12,
-        columnNumber: 5
-    }, this);
-}
-_c = Comment;
-Comment.propTypes = {
-    movieID: _propTypesDefault.default.string.isRequired,
-    rating: _propTypesDefault.default.number.isRequired,
-    comment: _propTypesDefault.default.string.isRequired,
-    onClickDelete: _propTypesDefault.default.func.isRequired,
-    onChangeComment: _propTypesDefault.default.func.isRequired,
-    onChangeRating: _propTypesDefault.default.func.isRequired
-};
-function App() {
-    _s();
-    // stores an array of comment objects
-    const [comments, setComments] = _react.useState([]);
-    // stores username fetched from the server
-    const [userName, setUsername] = _react.useState('');
-    function handleDelete(index) {
-        const newComments = comments.slice();
-        newComments.splice(index, 1);
-        setComments(newComments);
-    }
-    // edit the text of a comment
-    function handleCommentInput(e, index) {
-        const newComments = comments.slice();
-        newComments[index].comment = e.target.value;
-        setComments(newComments);
-    }
-    // edit the rating of a review
-    // Restricts the value of the rating to be from 0-10
-    // Any NaN value (caused by backspacing the input) defaults to 0
-    function handleRatingInput(e, index) {
-        const newComments = comments.slice();
-        const rating = parseInt(e.target.value, 10);
-        if (Number.isNaN(rating) || rating < 0) newComments[index].rating = 0;
-        else if (rating > 10) newComments[index].rating = 10;
-        else newComments[index].rating = rating;
-        setComments(newComments);
-    }
-    // Upon clicking the submit button, Send a post request to the server with the
-    // updated comment JSON, and alert the server's returned response
-    function saveChanges() {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(comments)
-        };
-        fetch('/update', requestOptions).then((response)=>response.json()
-        ).then((data)=>{
-            alert(data);
-        }).catch((error)=>{
-            console.error('Error:', error);
-        }); // eslint-disable-line no-console
-    }
-    // On initial load of the page, load the state variables with comment data and the username
-    // of the currently logged in user
-    _react.useEffect(()=>{
-        fetch('/comments').then((response)=>response.json()
-        ).then((data)=>{
-            setComments(data);
-        }).catch((error)=>{
-            console.error('Error:', error);
-        }); // eslint-disable-line no-console
-        fetch('/username').then((response)=>response.json()
-        ).then((data)=>{
-            setUsername(data);
-        }).catch((error)=>{
-            console.error('Error:', error);
-        }); // eslint-disable-line no-console
-    }, []);
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-        children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
-                to: "/testpage",
-                children: "Go to testpage"
-            }, void 0, false, {
-                fileName: "static/react/App.js",
-                lineNumber: 98,
-                columnNumber: 7
-            }, this),
-            " ",
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
-                fileName: "static/react/App.js",
-                lineNumber: 98,
-                columnNumber: 50
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
-                to: "/testpage1",
-                children: "Go to testpage1"
-            }, void 0, false, {
-                fileName: "static/react/App.js",
-                lineNumber: 99,
-                columnNumber: 7
-            }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("ul", {
                 children: [
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
-                        className: "username",
-                        children: [
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("span", {
-                                children: "Logged in as: "
-                            }, void 0, false, {
-                                fileName: "static/react/App.js",
-                                lineNumber: 102,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("b", {
-                                children: userName
-                            }, void 0, false, {
-                                fileName: "static/react/App.js",
-                                lineNumber: 103,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "static/react/App.js",
-                        lineNumber: 101,
+                        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
+                            to: "/search",
+                            children: " Search Page "
+                        }, void 0, false, {
+                            fileName: "static/react/Nav.js",
+                            lineNumber: 8,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "static/react/Nav.js",
+                        lineNumber: 8,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
-                        className: "movie-link",
                         children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("a", {
-                            href: "/movie",
-                            children: "Go to movies page"
+                            href: "/logout",
+                            children: " Logout "
                         }, void 0, false, {
-                            fileName: "static/react/App.js",
-                            lineNumber: 106,
+                            fileName: "static/react/Nav.js",
+                            lineNumber: 10,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
-                        fileName: "static/react/App.js",
-                        lineNumber: 105,
+                        fileName: "static/react/Nav.js",
+                        lineNumber: 9,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
-                fileName: "static/react/App.js",
-                lineNumber: 100,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                className: "main",
-                children: [
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
-                        children: "Your Reviews:"
-                    }, void 0, false, {
-                        fileName: "static/react/App.js",
-                        lineNumber: 110,
-                        columnNumber: 9
-                    }, this),
-                    comments.map((comment, index)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(Comment, {
-                            movieID: comment.movie_id.toString(),
-                            rating: comment.rating,
-                            comment: comment.comment,
-                            onClickDelete: ()=>handleDelete(index)
-                            ,
-                            onChangeComment: (e)=>handleCommentInput(e, index)
-                            ,
-                            onChangeRating: (e)=>handleRatingInput(e, index)
-                        }, comment.movie_id.toString(), false, {
-                            fileName: "static/react/App.js",
-                            lineNumber: 113,
-                            columnNumber: 13
-                        }, this)
-                    ),
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
-                        fileName: "static/react/App.js",
-                        lineNumber: 124,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
-                        type: "submit",
-                        onClick: saveChanges,
-                        children: "Save Changes"
-                    }, void 0, false, {
-                        fileName: "static/react/App.js",
-                        lineNumber: 125,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "static/react/App.js",
-                lineNumber: 109,
+                fileName: "static/react/Nav.js",
+                lineNumber: 7,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Outlet, {}, void 0, false, {
-                fileName: "static/react/App.js",
-                lineNumber: 127,
+                fileName: "static/react/Nav.js",
+                lineNumber: 13,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
-        fileName: "static/react/App.js",
-        lineNumber: 97,
+        fileName: "static/react/Nav.js",
+        lineNumber: 6,
         columnNumber: 5
     }, this);
 }
-_s(App, "2ZVeZZlWXLDm2BDx6ENx58maXY8=");
-_c1 = App;
-exports.default = App;
-var _c, _c1;
-$RefreshReg$(_c, "Comment");
-$RefreshReg$(_c1, "App");
+_c = Nav;
+exports.default = Nav;
+var _c;
+$RefreshReg$(_c, "Nav");
 
-  $parcel$ReactRefreshHelpers$4aca.postlude(module);
+  $parcel$ReactRefreshHelpers$aff9.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}],"dgSDT":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$696a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$696a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+/* eslint-disable */ var _react = require("react");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _s = $RefreshSig$();
+function SearchPage() {
+    _s();
+    const [query, setQuery] = _react.useState('');
+    const [type, setType] = _react.useState('Recipes');
+    function handleQueryInput(e) {
+        setQuery(e.target.value);
+    }
+    function handleTypeInput(e) {
+        setType(e.target.value);
+    }
+    function submitSearch() {}
+    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+        children: [
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
+                children: "Search Page"
+            }, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 21,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
+                type: "text",
+                value: query,
+                onChange: (e)=>handleQueryInput(e)
+            }, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 22,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
+                type: "radio",
+                id: "html",
+                name: "search_type",
+                value: "Recipes",
+                defaultChecked: true,
+                onChange: (e)=>handleTypeInput(e)
+            }, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 23,
+                columnNumber: 7
+            }, this),
+            "Recipes",
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
+                type: "radio",
+                id: "html",
+                name: "search_type",
+                value: "Ingredients",
+                onChange: (e)=>handleTypeInput(e)
+            }, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 25,
+                columnNumber: 7
+            }, this),
+            "Ingredients",
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 27,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
+                type: "submit",
+                onClick: submitSearch,
+                children: "Search"
+            }, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 28,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 30,
+                columnNumber: 7
+            }, this),
+            query,
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
+                fileName: "static/react/SearchPage.js",
+                lineNumber: 32,
+                columnNumber: 7
+            }, this),
+            type
+        ]
+    }, void 0, true, {
+        fileName: "static/react/SearchPage.js",
+        lineNumber: 20,
+        columnNumber: 5
+    }, this);
+}
+_s(SearchPage, "1siEUiiTC6c+bRwm9p56whVlyC0=");
+_c = SearchPage;
+exports.default = SearchPage;
+var _c;
+$RefreshReg$(_c, "SearchPage");
+
+  $parcel$ReactRefreshHelpers$696a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"7wKI2":[function(require,module,exports) {
 var ReactIs = require('react-is');
 // By explicitly using `prop-types` you are opting into new development behavior.
 // http://fb.me/prop-types-in-prod
@@ -27856,198 +27876,6 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"./lib/ReactPropTypesSecret":"jZTZJ","./lib/has":"fqKuf"}],"km3Ru":[function(require,module,exports) {
-"use strict";
-var Refresh = require('react-refresh/runtime');
-function debounce(func, delay) {
-    var args1;
-    var timeout = undefined;
-    return function(args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = undefined;
-            func.call(null, args);
-        }, delay);
-    };
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module.id + ' ' + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module) {
-    if (isReactRefreshBoundary(module.exports)) {
-        registerExportsForReactRefresh(module);
-        if (module.hot) {
-            module.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module.exports;
-            });
-            module.hot.accept(function(getParents) {
-                var prevExports = module.hot.data.prevExports;
-                var nextExports = module.exports; // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module) {
-    var exports = module.exports, id = module.id;
-    Refresh.register(exports, id + ' %exports%');
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        Refresh.register(exportValue, id + ' %exports% ' + key);
-    }
-}
-
-},{"react-refresh/runtime":"786KC"}],"4ZYvD":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$b220 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$b220.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-function TestPage() {
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
-            children: "Test page"
-        }, void 0, false, {
-            fileName: "static/react/TestPage.js",
-            lineNumber: 5,
-            columnNumber: 13
-        }, this)
-    }, void 0, false, {
-        fileName: "static/react/TestPage.js",
-        lineNumber: 4,
-        columnNumber: 9
-    }, this);
-}
-_c = TestPage;
-exports.default = TestPage;
-var _c;
-$RefreshReg$(_c, "TestPage");
-
-  $parcel$ReactRefreshHelpers$b220.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3JPlB":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$2867 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$2867.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-function TestPage1() {
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
-            children: "TestPage1"
-        }, void 0, false, {
-            fileName: "static/react/TestPage1.js",
-            lineNumber: 5,
-            columnNumber: 13
-        }, this)
-    }, void 0, false, {
-        fileName: "static/react/TestPage1.js",
-        lineNumber: 4,
-        columnNumber: 9
-    }, this);
-}
-_c = TestPage1;
-exports.default = TestPage1;
-var _c;
-$RefreshReg$(_c, "TestPage1");
-
-  $parcel$ReactRefreshHelpers$2867.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
+},{"./lib/ReactPropTypesSecret":"jZTZJ","./lib/has":"fqKuf"}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
 
 //# sourceMappingURL=index.js.map

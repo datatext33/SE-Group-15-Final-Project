@@ -21,11 +21,6 @@ app = flask.Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = os.getenv("SECRET_KEY")
-bp = flask.Blueprint(
-    "bp",
-    __name__,
-    template_folder="./static/react",
-)
 
 
 db.init_app(app)
@@ -46,8 +41,9 @@ def user_loader(user_id):
     return AppUser.query.get(user_id)
 
 
-@bp.route("/")
-def index():
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def index(path):
     """
     root page
     """
@@ -56,12 +52,15 @@ def index():
     return flask.render_template("index.html")
 
 
+"""
 @app.route("/movie")
 def movie():
-    """
+"""
+"""
     movie page
     Sends API data and reviews to the movie template
-    """
+"""
+"""
     if not flask_login.current_user.is_authenticated:
         return flask.redirect(flask.url_for("login"))
     mov = get_movie()
@@ -71,15 +70,18 @@ def movie():
     return flask.render_template(
         "movie.html", movie=mov, comments=reviews, users=AppUser
     )
+"""
 
-
+"""
 @app.route("/movie/<int:mov_id>")
 def movie_id(mov_id):
-    """
+"""
+"""
     Movie page, but enables manual selection of a movie from whitelist
     If the movie is not whitelisted, then the get_movie function
     will just fetch a random movie instead
-    """
+"""
+"""
     if not flask_login.current_user.is_authenticated:
         return flask.redirect(flask.url_for("login"))
     mov = get_movie(mov_id)
@@ -89,6 +91,7 @@ def movie_id(mov_id):
     return flask.render_template(
         "movie.html", movie=mov, comments=reviews, users=AppUser
     )
+"""
 
 
 @app.route("/login")
@@ -112,7 +115,7 @@ def login_post():
     query = AppUser.query.filter_by(username=data["username"]).first()
     if query is not None:
         flask_login.login_user(query)
-        return flask.redirect(flask.url_for("movie"))
+        return flask.redirect(flask.url_for("index"))
     else:
         flask.flash("User does not exist")
         return flask.redirect(flask.url_for("login"))
@@ -160,13 +163,16 @@ def logout():
     return flask.redirect(flask.url_for("login"))
 
 
+"""
 @app.route("/comment", methods=["POST"])
 @flask_login.login_required
 def comment():
-    """
+"""
+"""
     Handles posted comments
     If the server rejects the sent data, it will reload the page with the same movie ID.
-    """
+"""
+"""
     data = flask.request.form
     # Ensures that the rating is a number, and that it ranges from 0-10.
     if re.fullmatch(r"\d+", data["rating"]) is not None:
@@ -205,14 +211,17 @@ def comment():
         # Prompted if the rating is not a number
         flask.flash("Please enter a valid rating")
         return flask.redirect(flask.url_for("movie_id", mov_id=data["movie_id"]))
+"""
 
-
+"""
 @app.route("/comments")
 @flask_login.login_required
 def comments():
-    """
+"""
+"""
     Return all of current user's posted reviews in JSON format
-    """
+"""
+"""
     query = Review.query.filter_by(user_id=flask_login.current_user.id).all()
     reviews = []
     for review in query:
@@ -224,14 +233,18 @@ def comments():
             }
         )
     return flask.jsonify(reviews)
+"""
 
-
+"""
 @app.route("/update", methods=["POST"])
 @flask_login.login_required
+
 def update():
-    """
+"""
+"""
     update user's comments
-    """
+"""
+"""    
     data = flask.request.json
     # first query for all of the users already posted comments, and then delete them
     query = Review.query.filter_by(user_id=flask_login.current_user.id).all()
@@ -251,6 +264,7 @@ def update():
 
     # notify client that their Reviews have been updated
     return flask.jsonify("Changes successfully saved")
+"""
 
 
 @app.route("/username")
@@ -261,8 +275,6 @@ def username():
     """
     return flask.jsonify(flask_login.current_user.username)
 
-
-app.register_blueprint(bp)
 
 if __name__ == "__main__":
     app.run(
