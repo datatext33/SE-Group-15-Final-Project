@@ -1,0 +1,37 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "## Technologies, Frameworks, Libraries, and APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node run.mjs",
+    "build": "node run.mjs --prod"
+  },
+  "source": "static/react/index.js",
+  "targets": {
+    "default": {
+      "distDir": "./static/js"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@parcel/transformer-react-refresh-wrap": "^2.4.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.2.2",
+    "zx": "^6.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "parcel": "^2.4.0"
+  }
+}
