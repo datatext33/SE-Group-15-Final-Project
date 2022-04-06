@@ -4,7 +4,7 @@ from dotenv import find_dotenv, load_dotenv
 import flask
 from flask_login import (
     UserMixin,
-    login_user,
+    login_user, 
     LoginManager,
     login_required,
     logout_user,
