@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div>
+        <h1>{{title}}</h1>
+        <img src="{{image}}" />
+        <p>Source: {{source_url}}</p>
+        <p>Time to prepare: {{ready_in_minutes}} minutes</p>
+        <p>Servings : {{servings}}</p>
+        <p>Price per serving: ${{price_per_serving/100}}</p>
+        <p>Cuisines:
+        <ul>
+            {% for cuisine in cuisines %}
+            <li>{{cuisine}}</li>
+            {% endfor %}
+        </ul>
+        </p>
+        <p>Dish Types:
+        <ul>
+            {% for type in dish_types %}
+            <li>{{type}}</li>
+            {% endfor %}
+        </ul>
+        </p>
+
+        <p>Diets: <br>
+            {% for diet in diets %}
+            • {{diet}}
+            {% endfor %}
+        </p>
+        <p>Dietary Notices: <br>
+            <i>{{"Dairy free" if dairy_free else "Not dairy free"}}</i><br>
+            <i>{{"Gluten free" if gluten_free else "Not gluten free"}}</i><br>
+            <i>{{"Vegan" if vegan else "Not vegan"}}</i><br>
+            <i>{{"vegetarian" if vegetarian else "Not vegetarian"}}</i><br>
+        </p>
+        <p> Ingredients:
+        <ul>
+            {% for ingredient in ingredients %}
+            <li>{{ingredient["original"]}}</li>
+            {% endfor %}
+        </ul>
+        </p>
+
+
+        <p>Instructions:<br>
+            {% for step in analyzed_instructions[0]["steps"] %}
+        <p>Step {{step["number"]}}: {{step["step"]}}</p>
+        {% endfor %}
+        <p>
+    </div>
+</body>
+
+</html>
