@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <a href="{{url_for('main')}}">click here to go to main page!</a>
+    <form method="POST" action="/saveComment">
+        Item:<input type="integer" name="item">
+        Comment:<input type="text" name="comment">
+        <input type="submit" value="Comment!">
+    </form>
+    <form method="POST" action="/removeComment">
+        Comment id:<input type="integer" name="id">
+        <input type="submit" value="Delete!">
+    </form>
+
+    {{ user }}'s Comments:
+    {% for row in query %}
+    <ul>
+        <li>
+            comment id: {{ row.id }}<br>
+            {{ row.item }}<br>
+            {{ row.comment }}<br>
+        </li>
+    </ul>
+    {% endfor %}
+</body>
+
+</html>
