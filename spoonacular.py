@@ -3,6 +3,7 @@ Handle Spoonacular API Requests
 """
 import os
 import json
+from random import randrange
 import requests
 from dotenv import load_dotenv, find_dotenv
 
@@ -34,6 +35,25 @@ def search_recipe(query, number):
         return "apierror"
     return results
 
+def search_recipe_by_cuisine_type(cuisine, dish_type, number):
+    """
+    search for recipes by cuisine dish_type and how many results to get
+    """
+    base_url = "https://api.spoonacular.com/recipes/complexSearch"
+    params = {
+        "apiKey": spoonacular_key,
+        "cuisine": cuisine,
+        "type": dish_type,
+        "number": number,
+        "offset": randrange(10)
+        }
+    try:
+        response = requests.get(base_url, params=params)
+        data = response.json()
+        results = data["results"]
+    except (KeyError, requests.exceptions.JSONDecodeError):
+        return "apierror"
+    return results
 
 def get_recipe_info(recipe_id, include_nutrition=False):
     """

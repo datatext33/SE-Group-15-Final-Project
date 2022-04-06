@@ -6,6 +6,7 @@ function Nav() {
     <div>
       <ul>
         <li><Link to="/search"> Search Page </Link></li>
+        <li><Link to="/recommandation"> Recommandation Page </Link></li>
         <li>
           <a href="/logout"> Logout </a>
         </li>

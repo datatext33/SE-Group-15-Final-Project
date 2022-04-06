@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import Nav from './Nav';
 import SearchPage from './SearchPage';
+import RecommandationPage from './RecommandationPage';
 
 const container = document.getElementById('app');
 const root = createRoot(container);
@@ -12,6 +13,7 @@ root.render(
     <Routes>
       <Route path="/" element={<Nav />}>
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/recommandation" element={<RecommandationPage />} />
       </Route>
     </Routes>
   </BrowserRouter>,

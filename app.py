@@ -3,13 +3,12 @@ Main App
 """
 
 import os
-import re
 import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
 from models import db, AppUser, Review
 from api import get_movie
-from spoonacular import search_recipe, search_ingredients
+from spoonacular import search_recipe, search_ingredients, search_recipe_by_cuisine_type
 
 # modify database url environment variable so it is usable by SQLAlchemy
 load_dotenv(find_dotenv())
@@ -168,6 +167,14 @@ def register_post():
     flask.flash("Successfully Registered")
     return flask.redirect(flask.url_for("login"))
 
+@app.route("/recommandation", methods=["POST"])
+def get_recommandation():
+    """
+    get daily recommandation given user choosed cuisine and dish_type
+    """
+    data = flask.request.form
+
+    return flask.jsonify(search_recipe_by_cuisine_type(data['cuisine'], data['dish_type'], 1))
 
 @app.route("/logout")
 @flask_login.login_required
