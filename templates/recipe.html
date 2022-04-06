@@ -6,9 +6,17 @@
 
 <body>
     <div>
+        <ul>
+            <li><a href="/search"> Search Page </a></li>
+            <li>
+                <a href="/logout"> Logout </a>
+            </li>
+        </ul>
+    </div>
+    <div>
         <h1>{{title}}</h1>
         <img src="{{image}}" />
-        <p>Source: {{source_url}}</p>
+        <p>Source: <a href="{{source_url}}">{{source_url}}</a></p>
         <p>Time to prepare: {{ready_in_minutes}} minutes</p>
         <p>Servings : {{servings}}</p>
         <p>Price per serving: ${{price_per_serving/100}}</p>
