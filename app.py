@@ -8,7 +8,13 @@ import flask_login
 from dotenv import find_dotenv, load_dotenv
 from models import db, AppUser, Review
 from api import get_movie
-from spoonacular import search_recipe, search_ingredients, search_recipe_by_cuisine_type
+from spoonacular import (
+    get_recipe_info,
+    get_ingredient_info,
+    search_recipe,
+    search_ingredients,
+    search_recipe_by_cuisine_type,
+)
 
 # modify database url environment variable so it is usable by SQLAlchemy
 load_dotenv(find_dotenv())
@@ -65,6 +71,92 @@ def search():
     else:
         results = search_ingredients(data["query"], number)
     return flask.jsonify(results)
+
+
+@app.route("/recipe/<int:recipe_id>")
+def recipe(recipe_id):
+    """
+    return a page with info about a recipe
+    """
+    if not flask_login.current_user.is_authenticated:
+        return flask.redirect(flask.url_for("login"))
+
+    results = get_recipe_info(recipe_id=recipe_id)
+    if results == "apierror":
+        return flask.render_template("error.html")
+
+    (
+        title,
+        image,
+        source_url,
+        ready_in_minutes,
+        servings,
+        price_per_serving,
+        cuisines,
+        dish_types,
+        instructions,
+        analyzed_instructions,
+        ingredients,
+        diets,
+        dairy_free,
+        gluten_free,
+        vegan,
+        vegetarian,
+        nutrition_info,
+    ) = results
+
+    return flask.render_template(
+        "recipe.html",
+        title=title,
+        image=image,
+        source_url=source_url,
+        ready_in_minutes=ready_in_minutes,
+        servings=servings,
+        price_per_serving=price_per_serving,
+        cuisines=cuisines,
+        dish_types=dish_types,
+        instructions=instructions,
+        analyzed_instructions=analyzed_instructions,
+        ingredients=ingredients,
+        diets=diets,
+        dairy_free=dairy_free,
+        gluten_free=gluten_free,
+        vegan=vegan,
+        vegetarian=vegetarian,
+        nutrition_info=nutrition_info,
+    )
+
+
+@app.route("/ingredient/<int:ingredient_id>")
+def ingredient(ingredient_id):
+    """
+    return a page with info about an ingredient
+    """
+    if not flask_login.current_user.is_authenticated:
+        return flask.redirect(flask.url_for("login"))
+    results = get_ingredient_info(ingredient_id=ingredient_id)
+    if results == "apierror":
+        return flask.render_template("error.html")
+
+    (
+        name,
+        image,
+        aisle,
+        estimated_cost,
+        caloric_breakdown,
+        nutrients,
+        weight_per_serving,
+    ) = results
+    return flask.render_template(
+        "ingredient.html",
+        name=name,
+        image=image,
+        aisle=aisle,
+        estimated_cost=estimated_cost,
+        caloric_breakdown=caloric_breakdown,
+        nutrients=nutrients,
+        weight_per_serving=weight_per_serving,
+    )
 
 
 """
@@ -167,13 +259,17 @@ def register_post():
     flask.flash("Successfully Registered")
     return flask.redirect(flask.url_for("login"))
 
+
 @app.route("/recommandation", methods=["POST"])
 def get_recommandation():
     """
     get daily recommandation given user choosed cuisine and dish_type
     """
     data = flask.request.get_json()
-    return flask.jsonify(search_recipe_by_cuisine_type(data['cuisine'], data['dish_type'], 3))
+    return flask.jsonify(
+        search_recipe_by_cuisine_type(data["cuisine"], data["dish_type"], 3)
+    )
+
 
 @app.route("/logout")
 @flask_login.login_required
