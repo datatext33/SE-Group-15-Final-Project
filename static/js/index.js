@@ -28085,20 +28085,21 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
+var _recipePanel = require("./RecipePanel");
+var _recipePanelDefault = parcelHelpers.interopDefault(_recipePanel);
 var _s = $RefreshSig$();
 function RecommandationPage() {
     _s();
-    const [cuisine, setCuisine] = _react.useState("");
-    const [dishType, setDishType] = _react.useState("");
+    const [cuisine, setCuisine] = _react.useState('Chinese');
+    const [dishType, setDishType] = _react.useState('main course');
+    const [recipeDataList, setRecipeDataList] = _react.useState([]);
     // handle for cuisine change from input box
     const handleCuisineChange = (e)=>{
         setCuisine(e.target.value);
-        console.log(e.target.value);
     };
     // handle for dishType change from input box
     const handleDishTypeChange = (e)=>{
         setDishType(e.target.value);
-        console.log(e.target.value);
     };
     const handleSubmit = (e)=>{
         e.preventDefault('');
@@ -28115,6 +28116,9 @@ function RecommandationPage() {
         }).then((response)=>response.json()
         ).then((response)=>{
             console.log(response);
+            setRecipeDataList([
+                ...response
+            ]);
         });
     };
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -28123,11 +28127,12 @@ function RecommandationPage() {
                 onSubmit: handleSubmit,
                 children: [
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("label", {
-                        for: "cuisines"
+                        htmlFor: "cuisines",
+                        children: "Cusine"
                     }, void 0, false, {
                         fileName: "static/react/RecommandationPage.js",
-                        lineNumber: 38,
-                        columnNumber: 17
+                        lineNumber: 37,
+                        columnNumber: 9
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("select", {
                         id: "cuisines",
@@ -28139,45 +28144,46 @@ function RecommandationPage() {
                                 children: "Chinese"
                             }, void 0, false, {
                                 fileName: "static/react/RecommandationPage.js",
-                                lineNumber: 40,
-                                columnNumber: 21
+                                lineNumber: 39,
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("option", {
                                 value: "American",
                                 children: "American"
                             }, void 0, false, {
                                 fileName: "static/react/RecommandationPage.js",
-                                lineNumber: 41,
-                                columnNumber: 21
+                                lineNumber: 40,
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("option", {
                                 value: "Japanese",
                                 children: "Japanese"
                             }, void 0, false, {
                                 fileName: "static/react/RecommandationPage.js",
-                                lineNumber: 42,
-                                columnNumber: 21
+                                lineNumber: 41,
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("option", {
                                 value: "Spanish",
                                 children: "Spanish"
                             }, void 0, false, {
                                 fileName: "static/react/RecommandationPage.js",
-                                lineNumber: 43,
-                                columnNumber: 21
+                                lineNumber: 42,
+                                columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "static/react/RecommandationPage.js",
-                        lineNumber: 39,
-                        columnNumber: 17
+                        lineNumber: 38,
+                        columnNumber: 9
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("label", {
-                        for: "dish_types"
+                        htmlFor: "dish_types",
+                        children: "Dish Type"
                     }, void 0, false, {
                         fileName: "static/react/RecommandationPage.js",
                         lineNumber: 45,
-                        columnNumber: 17
+                        columnNumber: 9
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("select", {
                         id: "dish_types",
@@ -28190,7 +28196,7 @@ function RecommandationPage() {
                             }, void 0, false, {
                                 fileName: "static/react/RecommandationPage.js",
                                 lineNumber: 47,
-                                columnNumber: 21
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("option", {
                                 value: "breakfast",
@@ -28198,7 +28204,7 @@ function RecommandationPage() {
                             }, void 0, false, {
                                 fileName: "static/react/RecommandationPage.js",
                                 lineNumber: 48,
-                                columnNumber: 21
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("option", {
                                 value: "appetizer",
@@ -28206,36 +28212,51 @@ function RecommandationPage() {
                             }, void 0, false, {
                                 fileName: "static/react/RecommandationPage.js",
                                 lineNumber: 49,
-                                columnNumber: 21
+                                columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "static/react/RecommandationPage.js",
                         lineNumber: 46,
-                        columnNumber: 17
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
+                        type: "submit",
+                        value: "Get Recommandation"
+                    }, void 0, false, {
+                        fileName: "static/react/RecommandationPage.js",
+                        lineNumber: 51,
+                        columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "static/react/RecommandationPage.js",
-                lineNumber: 37,
-                columnNumber: 13
+                lineNumber: 36,
+                columnNumber: 7
             }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
-                type: "submit",
-                value: "Get Recommandation"
-            }, void 0, false, {
-                fileName: "static/react/RecommandationPage.js",
-                lineNumber: 52,
-                columnNumber: 13
-            }, this)
+            recipeDataList.map((recipeData, idx)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_recipePanelDefault.default, {
+                        title: recipeData.title,
+                        imgAddress: recipeData.image
+                    }, void 0, false, {
+                        fileName: "static/react/RecommandationPage.js",
+                        lineNumber: 55,
+                        columnNumber: 11
+                    }, this)
+                }, idx, false, {
+                    fileName: "static/react/RecommandationPage.js",
+                    lineNumber: 54,
+                    columnNumber: 9
+                }, this)
+            )
         ]
     }, void 0, true, {
         fileName: "static/react/RecommandationPage.js",
-        lineNumber: 36,
-        columnNumber: 9
+        lineNumber: 35,
+        columnNumber: 5
     }, this);
 }
-_s(RecommandationPage, "sqEgtCuuy0Q7cfGpsIW8hS/LNgo=");
+_s(RecommandationPage, "jbKcIlDJOy6UIaszg8Pbn/WBSJA=");
 _c = RecommandationPage;
 exports.default = RecommandationPage;
 var _c;
@@ -28246,6 +28267,61 @@ $RefreshReg$(_c, "RecommandationPage");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./RecipePanel":"7qc41"}],"7qc41":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f194 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f194.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+/* eslint-disable react/jsx-indent */ var _react = require("react");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _recipePanelCss = require("./RecipePanel.css");
+function RecipePanel({ title , imgAddress  }) {
+    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+        className: "Panel",
+        children: [
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
+                className: "Scaled",
+                src: imgAddress,
+                alt: "recipeImg"
+            }, void 0, false, {
+                fileName: "static/react/RecipePanel.js",
+                lineNumber: 11,
+                columnNumber: 5
+            }, this),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("span", {
+                children: title
+            }, void 0, false, {
+                fileName: "static/react/RecipePanel.js",
+                lineNumber: 12,
+                columnNumber: 5
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "static/react/RecipePanel.js",
+        lineNumber: 10,
+        columnNumber: 3
+    }, this);
+}
+_c = RecipePanel;
+RecipePanel.propTypes = {
+    title: _propTypesDefault.default.string.isRequired,
+    imgAddress: _propTypesDefault.default.string.isRequired
+};
+exports.default = RecipePanel;
+var _c;
+$RefreshReg$(_c, "RecipePanel");
+
+  $parcel$ReactRefreshHelpers$f194.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./RecipePanel.css":"g3Ges"}],"g3Ges":[function() {},{}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
 
 //# sourceMappingURL=index.js.map

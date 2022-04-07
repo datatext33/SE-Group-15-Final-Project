@@ -12,8 +12,12 @@
 /build
 /index.js
 /index.js.map
+/index.css
+/index.css.map
 #Enable deployment on Heroku
 #/static/react
+/static/js/index.css
+/static/js/index.css.map
 
 # misc
 .DS_Store

@@ -172,9 +172,8 @@ def get_recommandation():
     """
     get daily recommandation given user choosed cuisine and dish_type
     """
-    data = flask.request.form
-
-    return flask.jsonify(search_recipe_by_cuisine_type(data['cuisine'], data['dish_type'], 1))
+    data = flask.request.get_json()
+    return flask.jsonify(search_recipe_by_cuisine_type(data['cuisine'], data['dish_type'], 3))
 
 @app.route("/logout")
 @flask_login.login_required
