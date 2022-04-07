@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li><a href="/search"> Search Page </a></li>
+            <li>
+                <a href="/logout"> Logout </a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h1>{{name}}</h1>
+        <img src="https://spoonacular.com/cdn/ingredients_250x250/{{image}}" />
+        <p><b>Aisle:</b> {{aisle}}</p>
+        <p> <b>Estimated cost:</b> {{estimated_cost["value"]}} {{estimated_cost["unit"]}}%</p>
+        <p><b>Caloric breakdown:</b><br>
+            Percent protein: {{caloric_breakdown["percentProtein"]}}%<br>
+            Percent fat: {{caloric_breakdown["percentFat"]}}%<br>
+            Percent carbs: {{caloric_breakdown["percentCarbs"]}}
+        </p>
+        <p>
+            <b>Weight per serving:</b> {{weight_per_serving["amount"]}}{{weight_per_serving["unit"]}}
+        </p>
+        <p>
+            <b>Nutrients:</b><br>
+            {% for nutrient in nutrients %}
+            {{nutrient["name"]}}: {{nutrient["amount"]}}{{nutrient["unit"]}}<br>
+            {% endfor %}
+        </p>
+    </div>
+</body>
+
+</html>

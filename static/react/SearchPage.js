@@ -8,13 +8,15 @@ function RecipeSearchResult(
 ) {
   return (
     <div>
-      <p>{title}</p>
-      <img
-        src={image}
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
-        alt={title}
-      />
+      <a href={`recipe/${id}`}>
+        <p>{title}</p>
+        <img
+          src={image}
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+          alt={title}
+        />
+      </a>
     </div>
   );
 }
@@ -31,13 +33,15 @@ function IngredientSearchResult(
 ) {
   return (
     <div>
-      <p>{name}</p>
-      <img
-        src={`https://spoonacular.com/cdn/ingredients_250x250/${image}`}
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
-        alt={name}
-      />
+      <a href={`ingredient/${id}`}>
+        <p>{name}</p>
+        <img
+          src={`https://spoonacular.com/cdn/ingredients_250x250/${image}`}
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+          alt={name}
+        />
+      </a>
     </div>
   );
 }
