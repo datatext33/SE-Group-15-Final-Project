@@ -15,14 +15,14 @@ import { $, argv } from 'zx';
 process.env.FLASK_APP = 'app:app';
 
 if (argv.prod) {
-    // builds the React part first and then runs the Flask app in production mode
-    await $`npx parcel build`;
+  // builds the React part first and then runs the Flask app in production mode
+  await $`npx parcel build`;
 } else {
-    process.env.FLASK_ENV = 'development'; // to enable debug features in Flask
-    // this is what runs both processes in parallel, Promise.all executes all promises in the array in parallel
-    // zx returns the result of $ commands as promises
-    await Promise.all([
-        $`npx parcel watch`,
-        $`flask run`,
-    ]);
+  process.env.FLASK_ENV = 'development'; // to enable debug features in Flask
+  // this is what runs both processes in parallel, Promise.all executes all promises in the array in parallel
+  // zx returns the result of $ commands as promises
+  await Promise.all([
+    $`npx parcel watch`,
+    $`flask run`,
+  ]);
 }

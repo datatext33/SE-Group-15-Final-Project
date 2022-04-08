@@ -6,9 +6,8 @@ import os
 import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
-from models import db, AppUser, Review
-from api import get_movie
-from spoonacular import (
+from server.models import db, AppUser, Review
+from server.spoonacular import (
     get_recipe_info,
     get_ingredient_info,
     search_recipe,
@@ -159,48 +158,6 @@ def ingredient(ingredient_id):
     )
 
 
-"""
-@app.route("/movie")
-def movie():
-"""
-"""
-    movie page
-    Sends API data and reviews to the movie template
-"""
-"""
-    if not flask_login.current_user.is_authenticated:
-        return flask.redirect(flask.url_for("login"))
-    mov = get_movie()
-    if mov == "apierror":
-        return flask.render_template("error.html")
-    reviews = Review.query.filter_by(movie_id=mov["id"])
-    return flask.render_template(
-        "movie.html", movie=mov, comments=reviews, users=AppUser
-    )
-"""
-
-"""
-@app.route("/movie/<int:mov_id>")
-def movie_id(mov_id):
-"""
-"""
-    Movie page, but enables manual selection of a movie from whitelist
-    If the movie is not whitelisted, then the get_movie function
-    will just fetch a random movie instead
-"""
-"""
-    if not flask_login.current_user.is_authenticated:
-        return flask.redirect(flask.url_for("login"))
-    mov = get_movie(mov_id)
-    if mov == "apierror":
-        return flask.render_template("error.html")
-    reviews = Review.query.filter_by(movie_id=mov["id"])
-    return flask.render_template(
-        "movie.html", movie=mov, comments=reviews, users=AppUser
-    )
-"""
-
-
 @app.route("/login")
 def login():
     """
@@ -260,10 +217,10 @@ def register_post():
     return flask.redirect(flask.url_for("login"))
 
 
-@app.route("/recommandation", methods=["POST"])
-def get_recommandation():
+@app.route("/recommendation", methods=["POST"])
+def get_recommendation():
     """
-    get daily recommandation given user choosed cuisine and dish_type
+    get daily recommendation given user choosed cuisine and dish_type
     """
     data = flask.request.get_json()
     return flask.jsonify(
@@ -279,110 +236,6 @@ def logout():
     """
     flask_login.logout_user()
     return flask.redirect(flask.url_for("login"))
-
-
-"""
-@app.route("/comment", methods=["POST"])
-@flask_login.login_required
-def comment():
-"""
-"""
-    Handles posted comments
-    If the server rejects the sent data, it will reload the page with the same movie ID.
-"""
-"""
-    data = flask.request.form
-    # Ensures that the rating is a number, and that it ranges from 0-10.
-    if re.fullmatch(r"\d+", data["rating"]) is not None:
-        if int(data["rating"]) not in range(0, 11):
-            flask.flash("Please enter a valid rating")
-            return flask.redirect(flask.url_for("movie_id", mov_id=data["movie_id"]))
-        else:
-            # Make sure comment is not blank
-            if len(data["comment"]) == 0:
-                flask.flash("Please enter a comment")
-                return flask.redirect(
-                    flask.url_for("movie_id", mov_id=data["movie_id"])
-                )
-            new_review = Review(
-                movie_id=data["movie_id"],
-                rating=data["rating"],
-                comment=data["comment"],
-                user_id=str(flask_login.current_user.id),
-            )
-            # query for reviews made for this movie by the current user
-            # makes sure the user has not already posted a comment
-            query = Review.query.filter_by(
-                user_id=new_review.user_id, movie_id=new_review.movie_id
-            ).first()
-            if query is None:
-                db.session.add(new_review)
-                db.session.commit()
-            else:
-                flask.flash("You have already posted a comment for this movie")
-                return flask.redirect(
-                    flask.url_for("movie_id", mov_id=data["movie_id"])
-                )
-            # when the review is approved, the page for the same movie is reloaded
-            return flask.redirect(flask.url_for("movie_id", mov_id=data["movie_id"]))
-    else:
-        # Prompted if the rating is not a number
-        flask.flash("Please enter a valid rating")
-        return flask.redirect(flask.url_for("movie_id", mov_id=data["movie_id"]))
-"""
-
-"""
-@app.route("/comments")
-@flask_login.login_required
-def comments():
-"""
-"""
-    Return all of current user's posted reviews in JSON format
-"""
-"""
-    query = Review.query.filter_by(user_id=flask_login.current_user.id).all()
-    reviews = []
-    for review in query:
-        reviews.append(
-            {
-                "movie_id": review.movie_id,
-                "rating": review.rating,
-                "comment": review.comment,
-            }
-        )
-    return flask.jsonify(reviews)
-"""
-
-"""
-@app.route("/update", methods=["POST"])
-@flask_login.login_required
-
-def update():
-"""
-"""
-    update user's comments
-"""
-"""    
-    data = flask.request.json
-    # first query for all of the users already posted comments, and then delete them
-    query = Review.query.filter_by(user_id=flask_login.current_user.id).all()
-    for review in query:
-        db.session.delete(review)
-
-    # generate Review instances from received JSON data, and add them back to the database
-    for review in data:
-        new_review = Review(
-            movie_id=review["movie_id"],
-            rating=review["rating"],
-            comment=review["comment"],
-            user_id=str(flask_login.current_user.id),
-        )
-        db.session.add(new_review)
-    db.session.commit()
-
-    # notify client that their Reviews have been updated
-    return flask.jsonify("Changes successfully saved")
-"""
 
 
 @app.route("/username")
