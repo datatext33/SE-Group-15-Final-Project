@@ -7,9 +7,9 @@ import re
 import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
-from server.models import db, AppUser, Review
+from models import db, AppUser, Review
 from werkzeug.security import generate_password_hash, check_password_hash
-from server.spoonacular import (
+from spoonacular import (
     get_recipe_info,
     get_ingredient_info,
     search_recipe,
@@ -229,14 +229,24 @@ def register_post():
         r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(.[A-Z|a-z]{2,})+"
     )
     if re.fullmatch(regex, email):
-        user = AppUser.query.filter_by(
+        email_query = AppUser.query.filter_by(
             email=email
         ).first()  # if this returns a user, then the email already exists in database
 
         if (
-            user
+            email_query
         ):  # if a user is found, we want to redirect back to signup page so user can try again
             flask.flash("Email address already exists")
+            return flask.redirect(flask.url_for("register"))
+
+        username_query = AppUser.query.filter_by(
+            username=username
+        ).first()  # if this returns a user, then the user already exists in database
+
+        if (
+            username_query
+        ):  # if a user is found, we want to redirect back to signup page so user can try again
+            flask.flash("Username already exists")
             return flask.redirect(flask.url_for("register"))
 
         # create new user with the form data. Hash the password so plaintext version isn't saved.
