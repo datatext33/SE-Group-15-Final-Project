@@ -6,8 +6,8 @@ import os
 import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
-from server.models import db, AppUser, Review
-from server.spoonacular import (
+from models import db, AppUser, Review
+from spoonacular import (
     get_recipe_info,
     get_ingredient_info,
     search_recipe,
