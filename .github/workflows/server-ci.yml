@@ -44,4 +44,4 @@ jobs:
         run: find . -name '*.py' -exec pylint {} \;
         
       - name: Run test 1
-        run: python -m server/test
+        run: python -m server/tests
