@@ -7,10 +7,10 @@ function RecipePanel(
   { title, imgAddress },
 ) {
   return (
-  <div className="Panel">
-    <img className="Scaled" src={imgAddress} alt="recipeImg" />
-    <span>{title}</span>
-  </div>
+    <div className="Panel">
+      <img className="Scaled" src={imgAddress} alt="recipeImg" />
+      <span>{title}</span>
+    </div>
   );
 }
 
