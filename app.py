@@ -3,10 +3,12 @@ Main App
 """
 
 import os
+import re
 import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
 from models import db, AppUser, Review
+from werkzeug.security import generate_password_hash, check_password_hash
 from spoonacular import (
     get_recipe_info,
     get_ingredient_info,
@@ -172,16 +174,34 @@ def login_post():
     Login the user
     Ensures username is valid, otherwise reprompting the user to login again
     """
-    data = flask.request.form
-    if data["username"] == "":
-        flask.flash("Please enter a username")
-        return flask.redirect(flask.url_for("login"))
-    query = AppUser.query.filter_by(username=data["username"]).first()
-    if query is not None:
-        flask_login.login_user(query)
-        return flask.redirect(flask.url_for("index"))
+    # data = flask.request.form
+    email = flask.request.form.get("email")
+    password = flask.request.form.get("password")
+
+    regex = re.compile(
+        r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(.[A-Z|a-z]{2,})+"
+    )
+    if re.fullmatch(regex, email):
+        user = AppUser.query.filter_by(email=email).first()
+
+        # check if user actually exists
+        # take the user supplied password, hash it, and compare it to the hashed password in database
+        if not user or not check_password_hash(user.password, password):
+            flask.flash("Please check your login details and try again.")
+            return flask.redirect(flask.url_for("login"))
+
+        # if data["username"] == "":
+        # flask.flash("Please enter a username")
+        # return flask.redirect(flask.url_for("login"))
+        # query = AppUser.query.filter_by(username=data["username"]).first()
+        if user is not None:
+            flask_login.login_user(user)
+            return flask.redirect(flask.url_for("index"))
+        else:
+            flask.flash("User does not exist")
+            return flask.redirect(flask.url_for("login"))
     else:
-        flask.flash("User does not exist")
+        flask.flash("Please check your email")
         return flask.redirect(flask.url_for("login"))
 
 
@@ -201,20 +221,53 @@ def register_post():
     and that the username does not already exist in the database.
     Upon successful registration, user is redirected to login page.
     """
-    data = flask.request.form
-    if data["username"] == "":
-        flask.flash("Please enter a username")
-        return flask.redirect(flask.url_for("register"))
-    new_user = AppUser(username=data["username"])
-    query = AppUser.query.filter_by(username=new_user.username).first()
-    if query is None:
-        db.session.add(new_user)
-        db.session.commit()
+    email = flask.request.form.get("email")
+    username = flask.request.form.get("username")
+    password = flask.request.form.get("password")
+
+    regex = re.compile(
+        r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(.[A-Z|a-z]{2,})+"
+    )
+    if re.fullmatch(regex, email):
+        email_query = AppUser.query.filter_by(
+            email=email
+        ).first()  # if this returns a user, then the email already exists in database
+
+        if (
+            email_query
+        ):  # if a user is found, we want to redirect back to signup page so user can try again
+            flask.flash("Email address already exists")
+            return flask.redirect(flask.url_for("register"))
+
+        username_query = AppUser.query.filter_by(
+            username=username
+        ).first()  # if this returns a user, then the user already exists in database
+
+        if (
+            username_query
+        ):  # if a user is found, we want to redirect back to signup page so user can try again
+            flask.flash("Username already exists")
+            return flask.redirect(flask.url_for("register"))
+
+        # create new user with the form data. Hash the password so plaintext version isn't saved.
+        new_user = AppUser(
+            email=email,
+            username=username,
+            password=generate_password_hash(password, method="sha256"),
+        )
+        # new_user = AppUser(username=data["username"])
+        # query = AppUser.query.filter_by(username=new_user.username).first()
+        if new_user is not None:
+            db.session.add(new_user)
+            db.session.commit()
+        else:
+            flask.flash("User already signed up")
+            return flask.redirect(flask.url_for("register"))
+        flask.flash("Successfully Registered")
+        return flask.redirect(flask.url_for("login"))
     else:
-        flask.flash("User already signed up")
+        flask.flash("Please check your email")
         return flask.redirect(flask.url_for("register"))
-    flask.flash("Successfully Registered")
-    return flask.redirect(flask.url_for("login"))
 
 
 @app.route("/recommendation", methods=["POST"])
