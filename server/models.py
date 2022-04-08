@@ -10,7 +10,9 @@ class AppUser(UserMixin, db.Model):
     """
 
     id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(100))
     reviews = db.relationship("Review", backref="app_user", lazy=True)
 
 
