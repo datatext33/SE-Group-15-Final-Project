@@ -43,5 +43,5 @@ jobs:
       - name: Lint files
         run: find . -name '*.py' -exec pylint {} \;
         
-      - name: Run test 1
-        run: python -m server/tests
+      - name: Run test
+        run: python -m unittest
