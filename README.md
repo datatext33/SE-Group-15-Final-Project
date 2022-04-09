@@ -1,5 +1,8 @@
 # Final Project Sprint 1
 
+## Heroku URL: https://frozen-bayou-77018.herokuapp.com/
+## Kanban Board URL: https://github.com/datatext33/SE-Group-15-Final-Project/projects/1
+
 ## All setup/installation commands ran in a WSL or powershell terminal:-
 
 To install python package:
@@ -96,3 +99,10 @@ they have the option to also signup.
 8. Upon clicking on the button `Get Recommendation`, user will be able see list of recommended foods.
 9. User can interact between search page and recommendation page going back-and-fourth.
 10. If user wants to exit out, they have the option to logout.
+
+## Liniting:
+`# pylint: disable=too-many-locals` - There were too many locals in a function because of the api usage. We disabled it to not have these errors because we needed to integrate api and we did not find a way to not use locals.
+`# pylint: disable=unused-argument` - This was caused because there were dummy variable/s which caused this issue/argument. We suppressed the warning because flask needs it but linter disagrees..
+`# pylint: disable=too-few-public-methods` - We had to suppress this pylint error because this methods were used eleswhere in other classes and lot of the times it gave error.
+`disable=no-member` - We suppressed this error because we noticed a bug while implementing the flask-sqlAlchemy but the program run well. So, we just had to suppress it.
+`invalid-envvar-default` - We suppressed it because when we access the env variable, it underlines it but there were no actual errors causing an error running the project.
