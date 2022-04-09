@@ -119,7 +119,7 @@ function SearchPage() {
   return (
     <div>
       <h1>Search Page</h1>
-      <input type="text" value={query} onChange={(e) => handleQueryInput(e)} />
+      <input type="text" value={query} onChange={(e) => handleQueryInput(e)} data-testid="input-field" />
       <input type="radio" id="html" name="search_type" value="Recipes" defaultChecked onChange={(e) => handleTypeInput(e)} />
       Recipes
       <input type="radio" id="html" name="search_type" value="Ingredients" onChange={(e) => handleTypeInput(e)} />

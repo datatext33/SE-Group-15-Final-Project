@@ -1,3 +1,6 @@
+"""
+This is the database model
+"""
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -10,9 +13,10 @@ class AppUser(UserMixin, db.Model):
     """
 
     id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     reviews = db.relationship("Review", backref="app_user", lazy=True)
-
+    password = db.Column(db.String(100))
 
 class Review(db.Model):
     """
@@ -46,3 +50,4 @@ class ingredients(db.Model):
     ingredient = db.Column(db.String, nullable=False)
     comment = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False)
+    

@@ -35,6 +35,7 @@ def search_recipe(query, number):
         return "apierror"
     return results
 
+
 def search_recipe_by_cuisine_type(cuisine, dish_type, number):
     """
     search for recipes by cuisine dish_type and how many results to get
@@ -45,8 +46,8 @@ def search_recipe_by_cuisine_type(cuisine, dish_type, number):
         "cuisine": cuisine,
         "type": dish_type,
         "number": number,
-        "offset": randrange(10)
-        }
+        "offset": randrange(10),
+    }
     try:
         response = requests.get(base_url, params=params)
         data = response.json()
@@ -55,6 +56,8 @@ def search_recipe_by_cuisine_type(cuisine, dish_type, number):
         return "apierror"
     return results
 
+
+# pylint: disable=too-many-locals
 def get_recipe_info(recipe_id, include_nutrition=False):
     """
     get recipe info by id, optionally get nutrition data
