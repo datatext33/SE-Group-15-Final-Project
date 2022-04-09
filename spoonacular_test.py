@@ -8,7 +8,7 @@ from unittest import mock
 from spoonacular import search_recipe_by_cuisine_type
 
 
-def mocked_requests_get(*args):
+def mocked_requests_get(*args, **kwargs):
     """
     Mocked get request
     """
@@ -33,7 +33,7 @@ def mocked_requests_get(*args):
     return MockResponse(None, 404)
 
 
-def mocked_requests_get_error(*args):
+def mocked_requests_get_error(*args, **kwargs):
     """
     mocked_requests_get_error
     """
@@ -75,7 +75,7 @@ class TestSearchRecipeByCuisine(unittest.TestCase):
         self.assertEqual(mock_get.call_args.kwargs["params"]["number"], 2)
 
     @mock.patch("requests.get", side_effect=mocked_requests_get_error)
-    def test_response_api_error(self):
+    def test_response_api_error(self, mock_get):
         """
         Test for api error
         """
