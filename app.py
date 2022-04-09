@@ -7,8 +7,8 @@ import re
 import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
-from models import db, AppUser, Review
 from werkzeug.security import generate_password_hash, check_password_hash
+from models import db, AppUser
 from spoonacular import (
     get_recipe_info,
     get_ingredient_info,
@@ -50,7 +50,7 @@ def user_loader(user_id):
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def index(path):
+def index(path):  # pylint: disable=unused-argument
     """
     root page
     """
@@ -74,6 +74,7 @@ def search():
     return flask.jsonify(results)
 
 
+# pylint: disable=too-many-locals
 @app.route("/recipe/<int:recipe_id>")
 def recipe(recipe_id):
     """
@@ -185,7 +186,8 @@ def login_post():
         user = AppUser.query.filter_by(email=email).first()
 
         # check if user actually exists
-        # take the user supplied password, hash it, and compare it to the hashed password in database
+        # take the user supplied password, hash it,
+        # and compare it to the hashed password in database
         if not user or not check_password_hash(user.password, password):
             flask.flash("Please check your login details and try again.")
             return flask.redirect(flask.url_for("login"))
@@ -197,12 +199,10 @@ def login_post():
         if user is not None:
             flask_login.login_user(user)
             return flask.redirect(flask.url_for("index"))
-        else:
-            flask.flash("User does not exist")
-            return flask.redirect(flask.url_for("login"))
-    else:
-        flask.flash("Please check your email")
+        flask.flash("User does not exist")
         return flask.redirect(flask.url_for("login"))
+    flask.flash("Please check your email")
+    return flask.redirect(flask.url_for("login"))
 
 
 @app.route("/register")
@@ -222,7 +222,7 @@ def register_post():
     Upon successful registration, user is redirected to login page.
     """
     email = flask.request.form.get("email")
-    username = flask.request.form.get("username")
+    user_name = flask.request.form.get("username")
     password = flask.request.form.get("password")
 
     regex = re.compile(
@@ -240,7 +240,7 @@ def register_post():
             return flask.redirect(flask.url_for("register"))
 
         username_query = AppUser.query.filter_by(
-            username=username
+            username=user_name
         ).first()  # if this returns a user, then the user already exists in database
 
         if (
@@ -252,7 +252,7 @@ def register_post():
         # create new user with the form data. Hash the password so plaintext version isn't saved.
         new_user = AppUser(
             email=email,
-            username=username,
+            username=user_name,
             password=generate_password_hash(password, method="sha256"),
         )
         # new_user = AppUser(username=data["username"])
@@ -265,9 +265,8 @@ def register_post():
             return flask.redirect(flask.url_for("register"))
         flask.flash("Successfully Registered")
         return flask.redirect(flask.url_for("login"))
-    else:
-        flask.flash("Please check your email")
-        return flask.redirect(flask.url_for("register"))
+    flask.flash("Please check your email")
+    return flask.redirect(flask.url_for("register"))
 
 
 @app.route("/recommendation", methods=["POST"])
