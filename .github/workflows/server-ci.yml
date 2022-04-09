@@ -47,4 +47,4 @@ jobs:
         run: python -m unittest tests.py
         
       - name: Run test 2
-        run: python -m unittest spoonacular_test.py
+        run: python spoonacular_test.py
