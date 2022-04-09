@@ -6,7 +6,7 @@ import os
 import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
-from models import db, AppUser, Review
+from models import db, AppUser, Review, comments, ingredients
 from api import get_movie
 from spoonacular import (
     get_recipe_info,
@@ -81,6 +81,8 @@ def recipe(recipe_id):
     if not flask_login.current_user.is_authenticated:
         return flask.redirect(flask.url_for("login"))
 
+    query = comments.query.filter_by(username=flask_login.current_user.username).all()
+    user = flask_login.current_user.username
     results = get_recipe_info(recipe_id=recipe_id)
     if results == "apierror":
         return flask.render_template("error.html")
@@ -124,6 +126,8 @@ def recipe(recipe_id):
         vegan=vegan,
         vegetarian=vegetarian,
         nutrition_info=nutrition_info,
+        query=query,
+        user=user,
     )
 
 
@@ -134,6 +138,9 @@ def ingredient(ingredient_id):
     """
     if not flask_login.current_user.is_authenticated:
         return flask.redirect(flask.url_for("login"))
+
+    query = comments.query.filter_by(username=flask_login.current_user.username).all()
+    user = flask_login.current_user.username
     results = get_ingredient_info(ingredient_id=ingredient_id)
     if results == "apierror":
         return flask.render_template("error.html")
@@ -156,6 +163,8 @@ def ingredient(ingredient_id):
         caloric_breakdown=caloric_breakdown,
         nutrients=nutrients,
         weight_per_serving=weight_per_serving,
+        query=query,
+        user=user,
     )
 
 
@@ -383,6 +392,54 @@ def update():
     # notify client that their Reviews have been updated
     return flask.jsonify("Changes successfully saved")
 """
+
+
+@app.route("/saveComment", methods=["GET", "POST"])
+@flask_login.login_required
+def saveComment():
+    data = flask.request.form
+    newinfo = comments(
+        item=data["item"],
+        comment=data["comment"],
+        username=flask_login.current_user.username,
+    )
+    db.session.add(newinfo)
+    db.session.commit()
+    return flask.redirect(flask.url_for("recipe"))
+
+
+@app.route("/removeComment", methods=["GET", "POST"])
+@flask_login.login_required
+def removeComment():
+    data = flask.request.form
+    newinfo = comments.query.get(data["id"])
+    db.session.delete(newinfo)
+    db.session.commit()
+    return flask.redirect(flask.url_for("recipe"))
+
+
+@app.route("/saveingredientComment", methods=["GET", "POST"])
+@flask_login.login_required
+def saveingredientComment():
+    data = flask.request.form
+    newinfo = ingredients(
+        item=data["item"],
+        comment=data["comment"],
+        username=flask_login.current_user.username,
+    )
+    db.session.add(newinfo)
+    db.session.commit()
+    return flask.redirect(flask.url_for("ingredient"))
+
+
+@app.route("/removeingredientComment", methods=["GET", "POST"])
+@flask_login.login_required
+def removeingredientComment():
+    data = flask.request.form
+    newinfo = ingredients.query.get(data["id"])
+    db.session.delete(newinfo)
+    db.session.commit()
+    return flask.redirect(flask.url_for("ingredient"))
 
 
 @app.route("/username")

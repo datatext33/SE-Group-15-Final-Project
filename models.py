@@ -24,3 +24,25 @@ class Review(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.String(200), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("app_user.id"), nullable=False)
+
+
+class comments(db.Model):
+    """
+    comment recipe model
+    """
+
+    id = db.Column(db.Integer, primary_key=True)
+    recipe = db.Column(db.String, nullable=False)
+    comment = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False)
+
+
+class ingredients(db.Model):
+    """
+    comment ingredient model
+    """
+
+    id = db.Column(db.Integer, primary_key=True)
+    ingredient = db.Column(db.String, nullable=False)
+    comment = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False)
