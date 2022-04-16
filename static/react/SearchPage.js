@@ -1,56 +1,6 @@
 import { React, useState } from 'react';
-import PropTypes from 'prop-types';
-
-function RecipeSearchResult(
-  {
-    id, image, title,
-  },
-) {
-  return (
-    <div>
-      <a href={`recipe/${id}`}>
-        <p>{title}</p>
-        <img
-          src={image}
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-          alt={title}
-        />
-      </a>
-    </div>
-  );
-}
-RecipeSearchResult.propTypes = {
-  id: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-function IngredientSearchResult(
-  {
-    id, image, name,
-  },
-) {
-  return (
-    <div>
-      <a href={`ingredient/${id}`}>
-        <p>{name}</p>
-        <img
-          src={`https://spoonacular.com/cdn/ingredients_250x250/${image}`}
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-          alt={name}
-        />
-      </a>
-    </div>
-  );
-}
-
-IngredientSearchResult.propTypes = {
-  id: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};
+import RecipeSearchResult from './RecipeSearchResult';
+import IngredientSearchResult from './IngredientSearchResult';
 
 function SearchPage() {
   const [query, setQuery] = useState('');
@@ -118,7 +68,6 @@ function SearchPage() {
 
   return (
     <div>
-      <h1>Search Page</h1>
       <input type="text" value={query} onChange={(e) => handleQueryInput(e)} data-testid="input-field" />
       <input type="radio" id="html" name="search_type" value="Recipes" defaultChecked onChange={(e) => handleTypeInput(e)} />
       Recipes

@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-import Nav from './Nav';
+import Navigation from './Navigation';
 import SearchPage from './SearchPage';
 import RecommendationPage from './RecommendationPage';
+import LandingPage from './LandingPage';
 
 const container = document.getElementById('app');
 const root = createRoot(container);
@@ -11,7 +12,8 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Nav />}>
+      <Route path="/" element={<Navigation />}>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/recommendation" element={<RecommendationPage />} />
       </Route>
