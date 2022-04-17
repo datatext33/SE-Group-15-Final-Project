@@ -1,5 +1,7 @@
 import { React, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import {
+  Col, Row, Form, Container, Button,
+} from 'react-bootstrap';
 import RecipeSearchResult from './RecipeSearchResult';
 import IngredientSearchResult from './IngredientSearchResult';
 
@@ -64,41 +66,61 @@ function SearchPage() {
             ),
           );
         }
-        return 'No Search Results Found';
+        return (<Col sm={{ span: 9, offset: 4 }}>No Search Results Found</Col>);
       }
-      return 'Something went wrong with API Request!';
+      return (<Col sm={{ span: 9, offset: 4 }}>Something went wrong with API Request!</Col>);
     }
     return '';
   }
 
   return (
     <div>
-      <input type="text" value={query} onChange={(e) => handleQueryInput(e)} data-testid="input-field" />
-      <input type="radio" id="html" name="search_type" value="Recipes" defaultChecked onChange={(e) => handleTypeInput(e)} />
-      Recipes
-      <input type="radio" id="html" name="search_type" value="Ingredients" onChange={(e) => handleTypeInput(e)} />
-      Ingredients
-      <br />
-      <br />
+      <Container className="mt-5 mb-4">
+        <Form as="div">
+          <Row>
+            <Col sm={{ span: 9, offset: 1 }} className="mb-3">
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Search"
+                  size="lg"
+                  value={query}
+                  onChange={(e) => handleQueryInput(e)}
+                  data-testid="input-field"
+                />
+              </Form.Group>
+            </Col>
+            <Col className="mb-3">
+              <Button type="submit" size="lg" onClick={submitSearch}>Search</Button>
+            </Col>
 
-      Number of Results:
-      <select name="results-length" onChange={(e) => handleResultsLength(e)} defaultValue="10">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-      </select>
-
-      &nbsp;&nbsp;&nbsp;
-      <button type="submit" onClick={submitSearch}>Search</button>
-      <br />
-      <br />
-      <Row>
-        {handleResults()}
-      </Row>
-
+          </Row>
+          <Row>
+            <Col sm={{ span: 2, offset: 2 }} className="mb-3">
+              <Form.Group>
+                <Form.Check type="radio" label="Recipes" id="html" name="search_type" value="Recipes" defaultChecked onChange={(e) => handleTypeInput(e)} />
+                <Form.Check type="radio" label="Ingredients" id="html" name="search_type" value="Ingredients" onChange={(e) => handleTypeInput(e)} />
+              </Form.Group>
+            </Col>
+            <Col sm={{ span: 6, offset: 0 }} className="mb-3">
+              <Form.Group>
+                <Form.Select name="results-length" size="lg" onChange={(e) => handleResultsLength(e)} defaultValue="10">
+                  <option value="5">5 Results</option>
+                  <option value="10">10 Results</option>
+                  <option value="20">20 Results</option>
+                  <option value="50">50 Results</option>
+                </Form.Select>
+              </Form.Group>
+            </Col>
+          </Row>
+        </Form>
+      </Container>
+      <Container className="ml-1">
+        <Row>
+          {handleResults()}
+        </Row>
+      </Container>
     </div>
   );
 }
-
 export default SearchPage;

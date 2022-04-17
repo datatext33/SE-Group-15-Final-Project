@@ -27,7 +27,7 @@ function Navigation() {
           <Navbar.Collapse>
             <Nav className="me-auto">
               <LinkContainer to="/search">
-                <Nav.Link>Search Page</Nav.Link>
+                <Nav.Link>Search</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/recommendation">
                 <Nav.Link>Recommendation</Nav.Link>

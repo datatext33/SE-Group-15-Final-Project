@@ -8,18 +8,18 @@ function IngredientSearchResult(
   },
 ) {
   return (
-    <Card style={{ width: '18rem' }} className="shadow-sm">
+    <Card style={{ width: '18rem' }} className="shadow-sm result-card">
       <Card.Img
         variant="top"
         src={`https://spoonacular.com/cdn/ingredients_250x250/${image}`}
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
         alt={name}
-        class="ingredientImage"
+        class="ingredient-image"
       />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
-        <Card.Link href={`ingredient/${id}`} className="stretched-link">See Ingredient</Card.Link>
+        <Card.Link href={`ingredient/${id}`} className="stretched-link links">See Ingredient</Card.Link>
       </Card.Body>
     </Card>
   );
