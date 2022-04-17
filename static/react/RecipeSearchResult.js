@@ -8,17 +8,18 @@ function RecipeSearchResult(
   },
 ) {
   return (
-    <Card style={{ width: '18rem' }} className="shadow-sm">
+    <Card style={{ width: '18rem' }} className="shadow-sm result-card">
       <Card.Img
         variant="top"
         src={image}
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
         alt={title}
+        className="recipe-image"
       />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Card.Link href={`recipe/${id}`} className="stretched-link">See Recipe</Card.Link>
+        <Card.Link href={`recipe/${id}`} className="stretched-link links">See Recipe</Card.Link>
       </Card.Body>
     </Card>
   );
