@@ -1,5 +1,6 @@
 import { React } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
 
 function IngredientSearchResult(
   {
@@ -7,17 +8,20 @@ function IngredientSearchResult(
   },
 ) {
   return (
-    <div>
-      <a href={`ingredient/${id}`}>
-        <p>{name}</p>
-        <img
-          src={`https://spoonacular.com/cdn/ingredients_250x250/${image}`}
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-          alt={name}
-        />
-      </a>
-    </div>
+    <Card style={{ width: '18rem' }} className="shadow-sm">
+      <Card.Img
+        variant="top"
+        src={`https://spoonacular.com/cdn/ingredients_250x250/${image}`}
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
+        alt={name}
+        class="ingredientImage"
+      />
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Link href={`ingredient/${id}`} className="stretched-link">See Ingredient</Card.Link>
+      </Card.Body>
+    </Card>
   );
 }
 
