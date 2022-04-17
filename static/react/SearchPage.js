@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
 import RecipeSearchResult from './RecipeSearchResult';
 import IngredientSearchResult from './IngredientSearchResult';
 
@@ -39,23 +40,27 @@ function SearchPage() {
           if (results[0].title) {
             return results.map(
               (result) => (
-                <RecipeSearchResult
-                  key={result.id}
-                  id={result.id}
-                  image={result.image}
-                  title={result.title}
-                />
+                <Col className="mb-4 d-flex align-items-stretch">
+                  <RecipeSearchResult
+                    key={result.id}
+                    id={result.id}
+                    image={result.image}
+                    title={result.title}
+                  />
+                </Col>
               ),
             );
           }
           return results.map(
             (result) => (
-              <IngredientSearchResult
-                key={result.id}
-                id={result.id}
-                image={result.image}
-                name={result.name}
-              />
+              <Col className="mb-4 d-flex align-items-stretch">
+                <IngredientSearchResult
+                  key={result.id}
+                  id={result.id}
+                  image={result.image}
+                  name={result.name}
+                />
+              </Col>
             ),
           );
         }
@@ -88,7 +93,10 @@ function SearchPage() {
       <button type="submit" onClick={submitSearch}>Search</button>
       <br />
       <br />
-      {handleResults()}
+      <Row>
+        {handleResults()}
+      </Row>
+
     </div>
   );
 }
