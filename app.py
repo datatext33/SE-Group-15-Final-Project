@@ -126,6 +126,7 @@ def recipe(recipe_id):
         vegan=vegan,
         vegetarian=vegetarian,
         nutrition_info=nutrition_info,
+        username=flask_login.current_user.username,
     )
 
 
@@ -158,6 +159,7 @@ def ingredient(ingredient_id):
         caloric_breakdown=caloric_breakdown,
         nutrients=nutrients,
         weight_per_serving=weight_per_serving,
+        username=flask_login.current_user.username,
     )
 
 

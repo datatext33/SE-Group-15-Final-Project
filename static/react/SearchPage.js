@@ -1,7 +1,9 @@
 import { React, useState } from 'react';
-import {
-  Col, Row, Form, Container, Button,
-} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import RecipeSearchResult from './RecipeSearchResult';
 import IngredientSearchResult from './IngredientSearchResult';
 
@@ -78,7 +80,7 @@ function SearchPage() {
       <Container className="mt-5 mb-4">
         <Form as="div">
           <Row>
-            <Col sm={{ span: 9, offset: 1 }} className="mb-3">
+            <Col sm={{ span: 10, offset: 0 }} className="mb-3">
               <Form.Group>
                 <Form.Control
                   type="text"
@@ -96,7 +98,7 @@ function SearchPage() {
 
           </Row>
           <Row>
-            <Col sm={{ span: 2, offset: 2 }} className="mb-3">
+            <Col sm={{ span: 2, offset: 1 }} className="mb-3">
               <Form.Group>
                 <Form.Check type="radio" label="Recipes" id="html" name="search_type" value="Recipes" defaultChecked onChange={(e) => handleTypeInput(e)} />
                 <Form.Check type="radio" label="Ingredients" id="html" name="search_type" value="Ingredients" onChange={(e) => handleTypeInput(e)} />
