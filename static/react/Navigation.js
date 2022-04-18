@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 
 function Navigation() {
   const [userName, setUsername] = useState('');
@@ -18,10 +18,10 @@ function Navigation() {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" className="yellow-nav">
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Food Quest</Navbar.Brand>
+            <Navbar.Brand className="h1 mb-0">FoodQuest</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />
           <Navbar.Collapse>

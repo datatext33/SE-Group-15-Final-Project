@@ -22,3 +22,7 @@
 .links {
     text-decoration: none;
 }
+
+.yellow-nav {
+    background-color: #FFE156 !important;
+}
