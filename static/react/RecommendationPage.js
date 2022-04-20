@@ -1,4 +1,12 @@
+/* eslint-disable max-len */
 import { React, useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Stack from 'react-bootstrap/Stack';
+
 import RecipePanel from './RecipePanel';
 
 function RecommendationPage() {
@@ -31,33 +39,48 @@ function RecommendationPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        Cuisine
-        <select id="cuisines" onChange={(e) => handleCuisineChange(e)} data-testid="cuisines">
-          <option value="Chinese">Chinese</option>
-          <option value="American">American</option>
-          <option value="Japanese">Japanese</option>
-          <option value="Spanish">Spanish</option>
-        </select>
-
-        Dish Type
-        <select id="dish_types" onChange={(e) => handleDishTypeChange(e)} data-testid="dish_types">
-          <option value="main course">main course</option>
-          <option value="breakfast">breakfast</option>
-          <option value="appetizer">appetizer</option>
-        </select>
-        <input type="submit" value="Get Recommendation" />
-      </form>
-      {
-        recipeDataList.map((recipeData, idx) => (
-          <div key={idx}>
-            <RecipePanel title={recipeData.title} imgAddress={recipeData.image} />
-          </div>
-        ))
-      }
-    </div>
-
+    <Stack gap={3}>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col>
+            <Form.Label>Cuisine</Form.Label>
+            <Form.Select id="cuisines" onChange={(e) => handleCuisineChange(e)} data-testid="cuisines">
+              <option value="Chinese">Chinese</option>
+              <option value="American">American</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Spanish">Spanish</option>
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Label>Dish Type</Form.Label>
+            <Form.Select id="dish_types" onChange={(e) => handleDishTypeChange(e)} data-testid="dish_types">
+              <option value="main course">main course</option>
+              <option value="breakfast">breakfast</option>
+              <option value="appetizer">appetizer</option>
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Label>Ready to get today's Recommendation?</Form.Label>
+            <Form.Control type="submit" value="Click Me!" />
+          </Col>
+        </Row>
+      </Form>
+      <Container>
+        <Row>
+          {
+            recipeDataList.map((recipeData, idx) => (
+              <Col key={idx}>
+                <RecipePanel id={recipeData.id} title={recipeData.title} imgSrc={recipeData.image} />
+              </Col>
+            ))
+          }
+        </Row>
+      </Container>
+      <Stack gap={2} direction="horizontal" className="col-md-2 mx-auto">
+        <Button variant="success">Like!</Button>
+        <Button variant="danger">Dislike!</Button>
+      </Stack>
+    </Stack>
   );
 }
 
