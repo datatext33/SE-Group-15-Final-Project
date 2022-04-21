@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable max-len */
 import { React, useState } from 'react';
 import Form from 'react-bootstrap/Form';
