@@ -20,7 +20,7 @@ function Navigation() {
     <div>
       <Navbar bg="light" expand="lg" className="yellow-nav">
         <Container>
-          <LinkContainer to="/">
+          <LinkContainer to="/search">
             <Navbar.Brand className="h1 mb-0">FoodQuest</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />

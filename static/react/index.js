@@ -4,7 +4,6 @@ import React from 'react';
 import Navigation from './Navigation';
 import SearchPage from './SearchPage';
 import RecommendationPage from './RecommendationPage';
-import LandingPage from './LandingPage';
 
 const container = document.getElementById('app');
 const root = createRoot(container);
@@ -13,7 +12,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Navigation />}>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<SearchPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/recommendation" element={<RecommendationPage />} />
       </Route>

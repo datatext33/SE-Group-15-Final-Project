@@ -55,7 +55,7 @@ def index(path):  # pylint: disable=unused-argument
     root page
     """
     if not flask_login.current_user.is_authenticated:
-        return flask.redirect(flask.url_for("login"))
+        return flask.render_template("landing.html")
     return flask.render_template("index.html")
 
 

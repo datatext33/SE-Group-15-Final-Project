@@ -1004,8 +1004,6 @@ var _searchPage = require("./SearchPage");
 var _searchPageDefault = parcelHelpers.interopDefault(_searchPage);
 var _recommendationPage = require("./RecommendationPage");
 var _recommendationPageDefault = parcelHelpers.interopDefault(_recommendationPage);
-var _landingPage = require("./LandingPage");
-var _landingPageDefault = parcelHelpers.interopDefault(_landingPage);
 var _jsxRuntime = require("react/jsx-runtime");
 const container = document.getElementById('app');
 const root = _client.createRoot(container); // Nested routes are displayed with outlet tag
@@ -1017,7 +1015,7 @@ root.render(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                     path: "/",
-                    element: /*#__PURE__*/ _jsxRuntime.jsx(_landingPageDefault.default, {})
+                    element: /*#__PURE__*/ _jsxRuntime.jsx(_searchPageDefault.default, {})
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                     path: "/search",
@@ -1037,7 +1035,7 @@ root.render(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react-dom/client":"lOjBx","react-router-dom":"fdOAw","react":"21dqq","./SearchPage":"dgSDT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Navigation":"7s88h","./RecommendationPage":"7FdXw","./LandingPage":"ge2P4","react/jsx-runtime":"6AEwr"}],"lOjBx":[function(require,module,exports) {
+},{"react-dom/client":"lOjBx","react-router-dom":"fdOAw","react":"21dqq","./SearchPage":"dgSDT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Navigation":"7s88h","./RecommendationPage":"7FdXw","react/jsx-runtime":"6AEwr"}],"lOjBx":[function(require,module,exports) {
 'use strict';
 var m = require('react-dom');
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
@@ -28014,7 +28012,7 @@ function Navigation() {
                 children: /*#__PURE__*/ _jsxRuntime.jsxs(_containerDefault.default, {
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterBootstrap.LinkContainer, {
-                            to: "/",
+                            to: "/search",
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_navbarDefault.default.Brand, {
                                 className: "h1 mb-0",
                                 children: "FoodQuest"
@@ -37463,35 +37461,6 @@ function createUtilityClassName(utilityValues, breakpoints = _themeProvider.DEFA
 }
 exports.default = createUtilityClassName;
 
-},{"prop-types":"7wKI2","./ThemeProvider":"dVixI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ge2P4":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$9947 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$9947.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _react = require("react");
-var _jsxRuntime = require("react/jsx-runtime");
-function LandingPage() {
-    return /*#__PURE__*/ _jsxRuntime.jsxs("div", {
-        children: [
-            /*#__PURE__*/ _jsxRuntime.jsx("br", {}),
-            "Landing Page"
-        ]
-    });
-}
-_c = LandingPage;
-exports.default = LandingPage;
-var _c;
-$RefreshReg$(_c, "LandingPage");
-
-  $parcel$ReactRefreshHelpers$9947.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
+},{"prop-types":"7wKI2","./ThemeProvider":"dVixI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
 
 //# sourceMappingURL=index.js.map

@@ -10,7 +10,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFE156;">
         <div class="container">
-            <a class="navbar-brand h1 mb-0" href="/">FoodQuest</a>
+            <a class="navbar-brand h1 mb-0" href="/search">FoodQuest</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -47,11 +47,11 @@
                 <img class="mt-4" src="https://spoonacular.com/cdn/ingredients_250x250/{{image}}"
                     style="border-radius: 15px;" />
                 <p><b>Aisle:</b> {{aisle}}</p>
-                <p> <b>Estimated cost:</b> {{estimated_cost["value"]}} {{estimated_cost["unit"]}}%</p>
+                <p> <b>Estimated cost:</b> {{estimated_cost["value"]}} {{estimated_cost["unit"]}}</p>
                 <p><b>Caloric breakdown:</b><br>
                     Percent protein: {{caloric_breakdown["percentProtein"]}}%<br>
                     Percent fat: {{caloric_breakdown["percentFat"]}}%<br>
-                    Percent carbs: {{caloric_breakdown["percentCarbs"]}}
+                    Percent carbs: {{caloric_breakdown["percentCarbs"]}}%
                 </p>
                 <p>
                     <b>Weight per serving:</b> {{weight_per_serving["amount"]}}{{weight_per_serving["unit"]}}
