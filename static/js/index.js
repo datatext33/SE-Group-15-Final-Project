@@ -36481,7 +36481,7 @@ $parcel$ReactRefreshHelpers$bd6b.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-/* eslint-disable max-len */ var _react = require("react");
+/* eslint-disable react/no-unescaped-entities */ /* eslint-disable max-len */ var _react = require("react");
 var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _container = require("react-bootstrap/Container");
@@ -36527,6 +36527,22 @@ function RecommendationPage() {
                 ...response
             ]);
         });
+    };
+    const handleLike = (e, isLike)=>{
+        e.preventDefault('');
+        fetch('/likeEvent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // eslint-disable-next-line quote-props
+            body: JSON.stringify({
+                'like': isLike,
+                'id_list': recipeDataList.map((x)=>x.id.toString()
+                )
+            })
+        }).then((response)=>response.json()
+        );
     };
     return /*#__PURE__*/ _jsxRuntime.jsxs(_stackDefault.default, {
         gap: 3,
@@ -36626,10 +36642,14 @@ function RecommendationPage() {
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                         variant: "success",
+                        onClick: (e)=>handleLike(e, true)
+                        ,
                         children: "Like!"
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                         variant: "danger",
+                        onClick: (e)=>handleLike(e, false)
+                        ,
                         children: "Dislike!"
                     })
                 ]
