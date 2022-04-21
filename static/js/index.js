@@ -1005,8 +1005,6 @@ var _searchPage = require("./SearchPage");
 var _searchPageDefault = parcelHelpers.interopDefault(_searchPage);
 var _recommendationPage = require("./RecommendationPage");
 var _recommendationPageDefault = parcelHelpers.interopDefault(_recommendationPage);
-var _landingPage = require("./LandingPage");
-var _landingPageDefault = parcelHelpers.interopDefault(_landingPage);
 const container = document.getElementById('app');
 const root = _client.createRoot(container);
 // Nested routes are displayed with outlet tag
@@ -1018,10 +1016,10 @@ root.render(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
                     path: "/",
-                    element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_landingPageDefault.default, {}, void 0, false, void 0, void 0)
+                    element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_searchPageDefault.default, {}, void 0, false, void 0, void 0)
                 }, void 0, false, {
                     fileName: "static/react/index.js",
-                    lineNumber: 16,
+                    lineNumber: 15,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -1029,7 +1027,7 @@ root.render(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
                     element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_searchPageDefault.default, {}, void 0, false, void 0, void 0)
                 }, void 0, false, {
                     fileName: "static/react/index.js",
-                    lineNumber: 17,
+                    lineNumber: 16,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -1037,23 +1035,23 @@ root.render(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
                     element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_recommendationPageDefault.default, {}, void 0, false, void 0, void 0)
                 }, void 0, false, {
                     fileName: "static/react/index.js",
-                    lineNumber: 18,
+                    lineNumber: 17,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "static/react/index.js",
-            lineNumber: 15,
+            lineNumber: 14,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "static/react/index.js",
-        lineNumber: 14,
+        lineNumber: 13,
         columnNumber: 5
     }, undefined)
 }, void 0, false, {
     fileName: "static/react/index.js",
-    lineNumber: 13,
+    lineNumber: 12,
     columnNumber: 3
 }, undefined));
 
@@ -1062,7 +1060,7 @@ root.render(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react-router-dom":"fdOAw","react":"21dqq","./SearchPage":"dgSDT","./RecommendationPage":"7FdXw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Navigation":"7s88h","./LandingPage":"ge2P4"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","react-router-dom":"fdOAw","react":"21dqq","./SearchPage":"dgSDT","./RecommendationPage":"7FdXw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Navigation":"7s88h"}],"iTorj":[function(require,module,exports) {
 'use strict';
 module.exports = require('./cjs/react-jsx-dev-runtime.development.js');
 
@@ -30394,7 +30392,7 @@ function Navigation() {
                 children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_containerDefault.default, {
                     children: [
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterBootstrap.LinkContainer, {
-                            to: "/",
+                            to: "/search",
                             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarDefault.default.Brand, {
                                 className: "h1 mb-0",
                                 children: "FoodQuest"
@@ -37710,43 +37708,6 @@ as: Component = _buttonDefault.default , ...props }, ref)=>{
 DropdownToggle.displayName = 'DropdownToggle';
 exports.default = DropdownToggle;
 
-},{"classnames":"jocGM","react":"21dqq","@restart/ui/DropdownToggle":"8iWIY","@restart/ui/DropdownContext":"dX4vI","@restart/hooks/useMergedRefs":"6hhuo","./Button":"aPzUt","./InputGroupContext":"eWDkO","./ThemeProvider":"dVixI","./useWrappedRefWithWarning":"a7ejw","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ge2P4":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$9947 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$9947.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-function LandingPage() {
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-        children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
-                fileName: "static/react/LandingPage.js",
-                lineNumber: 6,
-                columnNumber: 7
-            }, this),
-            "Landing Page"
-        ]
-    }, void 0, true, {
-        fileName: "static/react/LandingPage.js",
-        lineNumber: 5,
-        columnNumber: 5
-    }, this);
-}
-_c = LandingPage;
-exports.default = LandingPage;
-var _c;
-$RefreshReg$(_c, "LandingPage");
-
-  $parcel$ReactRefreshHelpers$9947.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
+},{"classnames":"jocGM","react":"21dqq","@restart/ui/DropdownToggle":"8iWIY","@restart/ui/DropdownContext":"dX4vI","@restart/hooks/useMergedRefs":"6hhuo","./Button":"aPzUt","./InputGroupContext":"eWDkO","./ThemeProvider":"dVixI","./useWrappedRefWithWarning":"a7ejw","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["kn9T2","kh26k","3jHXO"], "3jHXO", "parcelRequire46e4")
 
 //# sourceMappingURL=index.js.map
