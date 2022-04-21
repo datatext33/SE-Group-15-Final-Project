@@ -16,3 +16,13 @@ class AppUser(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(100))
+
+class LikeEvents(db.Model):
+    """
+    LikeEvents model
+    """
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    like_list = db.Column(db.String(800))
+    dislike_list = db.Column(db.String(800))

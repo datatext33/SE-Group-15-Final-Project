@@ -39,6 +39,17 @@ function RecommendationPage() {
       });
   };
 
+  const handleLike = (e, isLike) => {
+    e.preventDefault('');
+    fetch('/likeEvent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      // eslint-disable-next-line quote-props
+      body: JSON.stringify({ 'like': isLike, 'id_list': recipeDataList.map((x) => x.id.toString()) }),
+    })
+      .then((response) => response.json());
+  };
+
   return (
     <Stack gap={3}>
       <Form onSubmit={handleSubmit}>
@@ -78,8 +89,8 @@ function RecommendationPage() {
         </Row>
       </Container>
       <Stack gap={2} direction="horizontal" className="col-md-2 mx-auto">
-        <Button variant="success">Like!</Button>
-        <Button variant="danger">Dislike!</Button>
+        <Button variant="success" onClick={(e) => handleLike(e, true)}>Like!</Button>
+        <Button variant="danger" onClick={(e) => handleLike(e, false)}>Dislike!</Button>
       </Stack>
     </Stack>
   );

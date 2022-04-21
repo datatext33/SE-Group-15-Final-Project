@@ -8,7 +8,7 @@ import flask
 import flask_login
 from dotenv import find_dotenv, load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, AppUser
+from models import db, AppUser, LikeEvents
 from spoonacular import (
     get_recipe_info,
     get_ingredient_info,
@@ -281,6 +281,47 @@ def get_recommendation():
         search_recipe_by_cuisine_type(data["cuisine"], data["dish_type"], 3)
     )
 
+@app.route("/likeEvent", methods=["POST"])
+def like_recommandation():
+    """
+    record user behavior on like or dislike the recommandation
+    """
+    data = flask.request.get_json()
+    username_query = LikeEvents.query.filter_by(
+            username=flask_login.current_user.username
+        ).first()
+    event = None
+    if username_query is None:
+        if data["like"]:
+            event = LikeEvents(username=flask_login.current_user.username,
+            like_list=','.join(data['id_list']), dislike_list=[])
+        else:
+            event = LikeEvents(username=flask_login.current_user.username,
+            like_list=[], dislike_list=','.join(data['id_list']))
+        db.session.add(event)
+    else:
+        if data["like"]:
+            username_query.like_list += ','.join(data['id_list'])
+        else:
+            username_query.dislike_list += ','.join(data['id_list'])
+
+    db.session.commit()
+
+    return flask.jsonify(
+        {"status" : "succeed"}
+    )
+
+@app.route("/getLike", methods=["get"])
+def get_liked_recipes():
+    """get liked receipes for current user"""
+    username_query = LikeEvents.query.filter_by(
+            username=flask_login.current_user.username
+        ).first()
+
+    return flask.jsonify({
+        'like_list' : username_query.like_list,
+        'dislike_list' : username_query.dislike_list
+    })
 
 @app.route("/logout")
 @flask_login.login_required
