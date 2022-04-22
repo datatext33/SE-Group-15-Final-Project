@@ -1,6 +1,6 @@
-# Final Project Sprint 1
+# Final Project Sprint 2
 
-## Heroku URL: https://frozen-bayou-77018.herokuapp.com/
+## Heroku URL: https://blooming-peak-83738.herokuapp.com/
 ## Kanban Board URL: https://github.com/datatext33/SE-Group-15-Final-Project/projects/1
 
 ## All setup/installation commands ran in a WSL or powershell terminal:-
