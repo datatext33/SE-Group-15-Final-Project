@@ -32,6 +32,10 @@ To install flask sqlalchemy version 2.1:
 To install npm for dependencies/node
 `sudo apt install npm`
 
+To install Bootstrap
+`npm install bootstrap`
+`gem install bootstrap -v 5.1.3` to install its version
+
 To install ESlint for Javascript
 Refer to https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb
 
@@ -56,7 +60,7 @@ The Spoonacular api: This api gives the information about the recipes/ingredient
 
 ## Project Setup and Deployment 
 
-1. `static` and `templates` folders are used when using Flask. Static folder contains mainly react and css files.
+1. `static` and `templates` folders are used when using Flask. Static folder contains react, css files and image folder which contains image of the project logo.
 2. Templates on the other hand, contains all html files needed as per project requirements.
 3. `app.py`contains all the main code of the project i.e., it renders all the code 
 4. `models.py` contains the database table of the user that signs up. Basically, it keeps track of the user data. 
@@ -66,6 +70,24 @@ The Spoonacular api: This api gives the information about the recipes/ingredient
 8. `requirements.txt` file to have all the external libraries that had to be install i.e. Flask, requests, python-dotenv flask_login, flask_sqlalchemy, psycopg2, `werkzeug.security` (for generating and checking) and `re` (for regular expression)
 9. `run.mjs` contains the parcel implementation for hot reload.
 10. `.gitignore` contains the files/folders that are not supposed to be pushed to Github.
+<-------react folder in static folder------->
+11. `LandingPage.js` contains the code for the main page that user sees clicking on the heroku link
+12. `Navigation.js` contains the code for the navigation bar at the top of the page right after user authenticates
+13. `RecipePanel.js` contains the code for the bootstrap cards style for the recipe
+14. `RecipeSearchResult` contains the code for showing the search result
+15. `RecommendationPage.js` contains the code for showing user the results for recommended food.
+16. `SearchPage.js` contains the template of search page i.e., where each field will be printed.
+<-------css files in static folder------->
+17. `index.css` file contains the styling for landing page and navigation page
+18. `login.css` file contains the styling for login page
+19. `register.css` file contains the styling for signup page
+<-------html files in templates folder------->
+20. `ingredient.html` file contains bootstrap code for ingredients page
+21. `landing.html` file contains bootstrap code for landing main i.e., the first page
+22. `login.html` file contains bootstrap code for login page
+23. `register.html` file contains bootstrap code for signup page
+24. `recipe.html` file contains the code for recipe page
+25. `index.html` file contains the dependencies for bootstrap
 
 For React, running the command `npm ci` will initialize the necessary Node modules for this application.
 
